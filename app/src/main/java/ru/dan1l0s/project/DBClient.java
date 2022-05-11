@@ -24,7 +24,7 @@ public class DBClient extends SQLiteOpenHelper {
 
     private SQLiteDatabase database;
 
-    private DBClient(Context context) {
+    public DBClient(Context context) {
         super(context, Name, null, 1);
     }
 
@@ -43,12 +43,14 @@ public class DBClient extends SQLiteOpenHelper {
         database = this.getWritableDatabase();
     }
 
-    public void insertTask(Task task, int status) {
+    public void insertTask(Task task) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(Task, task.getName());
         contentValues.put(Status, task.getStatus());
         database.insert(Table, null, contentValues);
     }
+
+
 
     @SuppressLint("Range")
     public List<Task> getList() {
@@ -61,9 +63,9 @@ public class DBClient extends SQLiteOpenHelper {
                 if (cur.moveToFirst()) {
                     do {
                         Task task = new Task();
-                        task.setId(cur.getInt(cur.getColumnIndex(ID)));
-                        task.setName(cur.getString(cur.getColumnIndex(Task)));
-                        task.setStatus(cur.getInt(cur.getColumnIndex(Status)));
+                        task.setId(cur.getInt(cur.getColumnIndex(ID))); //FIXME: doesn't work without @SupressLint = "RANGE" annotation
+                        task.setName(cur.getString(cur.getColumnIndex(Task))); //FIXME: doesn't work without @SupressLint = "RANGE" annotation
+                        task.setStatus(cur.getInt(cur.getColumnIndex(Status))); //FIXME: doesn't work without @SupressLint = "RANGE" annotation
                         list.add(task);
                     } while (cur.moveToNext());
                 }
@@ -74,6 +76,7 @@ public class DBClient extends SQLiteOpenHelper {
         }
         return list;
     }
+
     public void updateStatus(int id, int status)
     {
         ContentValues contentValues = new ContentValues();
