@@ -7,4 +7,5 @@
     <string name="task_name_tint">Task name</string>
     <string name="loading_production">PRODUCTION</string>
     <string name="content_desc">i do not know what is it, but it\'s a warning, i guess..</string>
+    <string name="button_text_save">Save</string>
 </resources>

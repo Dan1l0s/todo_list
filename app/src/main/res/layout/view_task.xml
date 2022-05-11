@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
 
-    app:cardElevation="4dp"
+    app:cardElevation="2dp"
     app:cardCornerRadius="8dp"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="8dp">
@@ -20,8 +20,30 @@
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tool:text="@string/task_sample"
             android:buttonTint="@color/dark_red"/>
+
+        <TextView
+            android:id="@+id/taskName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/checkbox"
+            android:text="TEXT"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/taskDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/taskName"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="0dp"
+            android:layout_toRightOf="@+id/checkbox"
+            android:text="TEXT DESC"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
 
     </RelativeLayout>
 

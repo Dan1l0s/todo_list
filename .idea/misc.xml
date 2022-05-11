@@ -7,9 +7,12 @@
         <entry key="..\:/IT-space/project/app/src/main/res/layout/activity_loading.xml" value="0.5744791666666667" />
         <entry key="..\:/IT-space/project/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/IT-space/project/app/src/main/res/layout/add_new_task" value="0.5744791666666667" />
+        <entry key="..\:/IT-space/project/app/src/main/res/layout/add_new_task.xml" value="0.5604166666666667" />
         <entry key="..\:/IT-space/project/app/src/main/res/layout/fragment_dashboard.xml" value="0.2793819655521783" />
         <entry key="..\:/IT-space/project/app/src/main/res/layout/fragment_home.xml" value="0.5" />
         <entry key="..\:/IT-space/project/app/src/main/res/layout/task.xml" value="0.5744791666666667" />
+        <entry key="..\:/IT-space/project/app/src/main/res/layout/update_task.xml" value="0.5604166666666667" />
+        <entry key="..\:/IT-space/project/app/src/main/res/layout/view_task.xml" value="0.4479166666666667" />
         <entry key="..\:/IT-space/project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.45092592592592595" />
       </map>
     </option>
