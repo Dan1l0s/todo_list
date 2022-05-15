@@ -17,7 +17,6 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import ru.dan1l0s.project.DBClient;
 import ru.dan1l0s.project.R;
 
 public class AddTask extends BottomSheetDialogFragment {

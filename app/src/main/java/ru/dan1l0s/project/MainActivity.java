@@ -22,12 +22,12 @@ import ru.dan1l0s.project.task.AddTask;
 import ru.dan1l0s.project.task.DialogCloseListener;
 import ru.dan1l0s.project.task.Task;
 
-public class  MainActivity extends AppCompatActivity {
+public class  MainActivity extends AppCompatActivity implements DialogCloseListener{
 
     private RecyclerView ListRecyclerView;
     private Adapter adapter;
     private List<Task> list;
-    private DBClient database;
+//    private DBClient database;
     private FloatingActionButton floatingActionButton;
 
     @Override
@@ -36,8 +36,8 @@ public class  MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide(); // same as in activity_loading
 
-        database = new DBClient(this);
-        database.openDataBase();
+//        database = new DBClient(this);
+//        database.openDataBase();
 
         ListRecyclerView = findViewById(R.id.listRecyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(this);
@@ -63,7 +63,7 @@ public class  MainActivity extends AppCompatActivity {
         list.add(task);
         floatingActionButton = findViewById(R.id.floating_action_button);
         ListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new Adapter(database, this);
+//        adapter = new Adapter(database, this);
 
         // ListRecyclerView.setAdapter(adapter); //FIXME: all commented strings crash program, it's total gg.
 
@@ -81,7 +81,7 @@ public class  MainActivity extends AppCompatActivity {
     @Override
     public void handleDialogClose(DialogInterface dialogInterface)
     {
-        list = database.getList();
+//        list = database.getList();
         Collections.reverse(list);
         adapter.setList(list);
         adapter.notifyDataSetChanged();

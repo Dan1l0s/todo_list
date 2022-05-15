@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import ru.dan1l0s.project.DBClient;
 import ru.dan1l0s.project.MainActivity;
 import ru.dan1l0s.project.R;
 import ru.dan1l0s.project.task.AddTask;
