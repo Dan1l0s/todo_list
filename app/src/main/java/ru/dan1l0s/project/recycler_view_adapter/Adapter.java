@@ -11,13 +11,15 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+
 import java.util.List;
 
 import ru.dan1l0s.project.MainActivity;
 import ru.dan1l0s.project.R;
 import ru.dan1l0s.project.task.AddTask;
 import ru.dan1l0s.project.task.Task;
-
+/*
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
 
     private MainActivity activity;
@@ -104,3 +106,4 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
     }
 
 }
+*/

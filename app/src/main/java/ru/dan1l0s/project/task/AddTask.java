@@ -26,7 +26,7 @@ public class AddTask extends BottomSheetDialogFragment {
    // private EditText newTaskDesc;
     private Button newTaskSave;
 
-    private DBClient database;
+//    private DBClient database;
 
     public static AddTask newTask()
     {
@@ -72,8 +72,8 @@ public class AddTask extends BottomSheetDialogFragment {
             }
         }
 
-        database = new DBClient(getActivity());
-        database.openDataBase();
+//        database = new DBClient(getActivity());
+//        database.openDataBase();
 
         newTaskName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -107,14 +107,14 @@ public class AddTask extends BottomSheetDialogFragment {
                 String name1 = newTaskName.getText().toString();
                 if (updated)
                 {
-                    database.updateTask(bundle.getInt("id"), name1);
+//                    database.updateTask(bundle.getInt("id"), name1);
                 }
                 else
                 {
                     Task task = new Task();
                     task.setName(name1);
-                    task.setStatus(0); //TODO: status needed
-                    database.insertTask(task);
+//                    task.setStatus(0); //TODO: status needed
+//                    database.insertTask(task);
                 }
                 dismiss();
             }

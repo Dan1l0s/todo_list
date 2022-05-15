@@ -2,6 +2,7 @@ package ru.dan1l0s.project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -22,12 +23,12 @@ public class DBTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bdtest);
-        bindEditText();
+        initElem();
         database = FirebaseDatabase.getInstance("https://to-do-list-project-data-ba" +
                 "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference(TASK_KEY);
     }
 
-    private void bindEditText() {
+    private void initElem() {
         nameText = findViewById(R.id.nameText);
         descText = findViewById(R.id.descText);
         timeText = findViewById(R.id.timeText);
@@ -51,5 +52,8 @@ public class DBTestActivity extends AppCompatActivity {
         }
     }
 
-    public void onClickLoadButt(View view) {}
+    public void onClickLoadButt(View view) {
+        Intent i = new Intent(DBTestActivity.this, ReadActivity.class);
+        startActivity(i);
+    }
 }

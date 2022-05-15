@@ -14,7 +14,7 @@ public class LoadingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_loading);
         getSupportActionBar().hide();
 
-        Intent intent = new Intent(LoadingActivity.this, DBTestActivity.class); // MainActivity instead of BDTestActivity
+        Intent intent = new Intent(LoadingActivity.this, DBTestActivity.class);
         new Handler().postDelayed(new Runnable()
         {
             @Override
