@@ -67,7 +67,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
         database.openDataBase();
         Task item = list.get(position);
         holder.name.setText(item.getName());
-        holder.task.setChecked(!IntToBool(item.getStatus()));
+//        holder.task.setChecked(!IntToBool(item.getStatus())); // FIXME no anymore status variable
         holder.desc.setText(item.getDesc());
         holder.task.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

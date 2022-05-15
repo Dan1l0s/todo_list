@@ -22,7 +22,7 @@ import ru.dan1l0s.project.task.AddTask;
 import ru.dan1l0s.project.task.DialogCloseListener;
 import ru.dan1l0s.project.task.Task;
 
-public class MainActivity extends AppCompatActivity implements DialogCloseListener {
+public class  MainActivity extends AppCompatActivity {
 
     private RecyclerView ListRecyclerView;
     private Adapter adapter;
@@ -40,16 +40,33 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         database.openDataBase();
 
         ListRecyclerView = findViewById(R.id.listRecyclerView);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        ListRecyclerView.setLayoutManager(manager);
+        ListRecyclerView.setAdapter(adapter);
+
+        Task task = new Task();
+        task.setName("test name");
+        task.setDesc("test desc");
+//        task.setStatus(600);
+//        task.setId(0);
+
+        list.add(task);
+        list.add(task);
+        list.add(task);
+        list.add(task);
+        list.add(task);
+        list.add(task);
+        list.add(task);
+        list.add(task);
+        list.add(task);
+        list.add(task);
+        list.add(task);
         floatingActionButton = findViewById(R.id.floating_action_button);
         ListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new Adapter(database, this);
 
         // ListRecyclerView.setAdapter(adapter); //FIXME: all commented strings crash program, it's total gg.
 
-        //list = database.getList();
-        //Collections.reverse(list);
-
-        //adapter.setList(list);
         /*
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
             }
         });
         */
-
     }
 
 

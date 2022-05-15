@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project">
         <activity
+            android:name=".DBTestActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoadingActivity"
             android:exported="true">
             <intent-filter>
@@ -20,6 +23,7 @@
         <activity
             android:name=".MainActivity">
         </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
