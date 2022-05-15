@@ -52,18 +52,9 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddTask.class);
-                startActivity(intent);
+                startActivityForResult(intent, 0);
             }
         });
-
-
-
-        /*
-
-        // ListRecyclerView.setAdapter(adapter); //FIXME: all commented strings crash program, it's total gg.
-
-        */
-
 
     }
 
@@ -75,8 +66,7 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     Task task = ds.getValue(Task.class);
                     if (task == null) {
-                        Toast.makeText(MainActivity.this, "Было " +
-                                "получено пустое задание", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Было получено пустое задание", Toast.LENGTH_SHORT).show();
                         continue;
                     }
                     list.add(task);
@@ -103,6 +93,6 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
 
     @Override
     public void onTaskClick(int pos) {
-        //DatabaseReference reference =
+        //DatabaseReference db = FirebaseDatabase.getInstance().getReference("tasks").child(pos);
     }
 }

@@ -37,15 +37,17 @@ public class AddTask extends AppCompatActivity {
     }
 
     public void onClickSaveButt(View view) {
-        String id = database.getKey();
         String name = nameText.getText().toString();
         String desc = descText.getText().toString();
         String time = timeText.getText().toString();
         String date = dateText.getText().toString();
-        Task newTask = new Task(id, name, desc, time, date);
+
+
         if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(desc)
                 && !TextUtils.isEmpty(time) && !TextUtils.isEmpty(date)) {
-            database.push().setValue(newTask);
+            String id = database.push().getKey();
+            Task newTask = new Task(id, name, desc, time, date);;
+            database.child(id).setValue(newTask);
             Toast.makeText(this, "Сохранено", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(AddTask.this, MainActivity.class);
             startActivity(i);
@@ -56,8 +58,8 @@ public class AddTask extends AppCompatActivity {
     }
 
     public void onClickLoadButt(View view) {
-        database.removeValue();
-        Intent i = new Intent(AddTask.this, MainActivity.class);
-        startActivity(i);
+        finishActivity(0);
+        //        Intent i = new Intent(AddTask.this, MainActivity.class);
+//        startActivity(i);
     }
 }

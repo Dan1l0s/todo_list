@@ -37,15 +37,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         CheckBox task;
-        TextView name, desc, date;
+        TextView name, desc, date, id;
         OnTaskListener onTaskListener;
-
         public ViewHolder(View view, OnTaskListener onTaskListener) {
             super(view);
             task = view.findViewById(R.id.checkbox);
             name = view.findViewById(R.id.taskName);
             desc = view.findViewById(R.id.taskDesc);
             date = view.findViewById(R.id.taskDate);
+            id = view.findViewById(R.id.taskID);
             this.onTaskListener = onTaskListener;
             view.setOnClickListener(this);
         }
@@ -77,6 +77,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
         holder.name.setText(item.getName());
         holder.desc.setText(item.getDesc());
         holder.date.setText(item.getDate());
+        holder.id.setText(item.getId());
 //        holder.task.setChecked(!IntToBool(item.getStatus())); // FIXME no anymore status variable
     }
 
