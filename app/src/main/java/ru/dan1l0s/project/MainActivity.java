@@ -15,7 +15,7 @@ import java.util.List;
 import ru.dan1l0s.project.recycler_view_adapter.Adapter;
 import ru.dan1l0s.project.task.Task;
 
-public class MainActivity extends AppCompatActivity {
+public class  MainActivity extends AppCompatActivity {
 
     private RecyclerView ListRecyclerView;
     private Adapter adapter;
@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
         Task task = new Task();
         task.setName("test name");
         task.setDesc("test desc");
-        task.setStatus(600);
-        task.setId(0);
+//        task.setStatus(600);
+//        task.setId(0);
 
         list.add(task);
         list.add(task);
