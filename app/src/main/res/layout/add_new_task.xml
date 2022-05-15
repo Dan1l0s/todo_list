@@ -12,6 +12,18 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColorHint="@color/dark_red" />
 
+    <EditText
+        android:id="@+id/addTaskDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addTaskName"
+        android:background="@null"
+        android:layout_marginTop="5dp"
+        android:hint="@string/task_desc_tint"
+        android:minHeight="32dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColorHint="@color/dark_red" />
+
     <Button
         android:id="@+id/addTaskButton"
         android:layout_width="wrap_content"

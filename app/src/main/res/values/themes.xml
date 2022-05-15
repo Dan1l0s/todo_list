@@ -13,4 +13,11 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name ="AddTaskStyle" parent = "Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/holo_blue_light</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+
+    </style>
 </resources>
