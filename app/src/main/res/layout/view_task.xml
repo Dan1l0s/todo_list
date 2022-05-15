@@ -15,12 +15,12 @@
         android:padding="4dp">
 
         <CheckBox
-            android:paddingStart="4dp"
-            android:paddingEnd="0dp"
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="@color/dark_red"/>
+            android:buttonTint="@color/dark_red"
+            android:paddingStart="4dp"
+            android:paddingEnd="0dp" />
 
         <TextView
             android:id="@+id/taskName"
@@ -42,6 +42,18 @@
             android:layout_marginTop="0dp"
             android:layout_toRightOf="@+id/checkbox"
             android:text="TEXT DESC"
+            android:textColor="@color/black"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/taskDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/taskDesc"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="0dp"
+            android:layout_toRightOf="@+id/checkbox"
+            android:text="TEXT DATE"
             android:textColor="@color/black"
             android:textSize="10sp" />
 

@@ -1,134 +1,63 @@
 package ru.dan1l0s.project.task;
 
-import android.app.Activity;
-import android.content.DialogInterface;
-import android.graphics.Color;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import androidx.core.content.ContextCompat;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-
+import ru.dan1l0s.project.MainActivity;
 import ru.dan1l0s.project.R;
 
-public class AddTask extends BottomSheetDialogFragment {
-
-
-    private EditText newTaskName;
-   // private EditText newTaskDesc;
-    private Button newTaskSave;
-
-//    private DBClient database;
-
-    public static AddTask newTask()
-    {
-        return new AddTask();
-    }
+public class AddTask extends AppCompatActivity {
+    private EditText nameText, descText, timeText, dateText;
+    private DatabaseReference database;
+    private String TASK_KEY = "Tasks";
 
     @Override
-    public void onCreate(Bundle lastInstance)
-    {
-        super.onCreate(lastInstance);
-        setStyle(STYLE_NORMAL, R.style.AddTaskStyle);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_bdtest);
+        initElem();
+        database = FirebaseDatabase.getInstance("https://to-do-list-project-data-ba" +
+                "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference(TASK_KEY);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup group, Bundle lastInstance)
-    {
-        View view = inflater.inflate(R.layout.add_new_task, group, false);
-        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        return view;
+    private void initElem() {
+        nameText = findViewById(R.id.nameText);
+        descText = findViewById(R.id.descText);
+        timeText = findViewById(R.id.timeText);
+        dateText = findViewById(R.id.dateText);
     }
 
-    @Override
-    public void onViewCreated(View view, Bundle lastInstance)
-    {
-        super.onViewCreated(view, lastInstance);
-        newTaskName = getView().findViewById(R.id.addTaskName);
-        //newTaskDesc = getView().findViewById(R.id.addTaskDesc);
-        newTaskSave = getView().findViewById(R.id.addTaskButton);
-
-        boolean ff1 = false;
-
-        final Bundle bundle = getArguments();
-        if (bundle != null)
-        {
-            ff1 = true;
-            String name = bundle.getString("task");
-            //String desc = bundle.getString("desc");
-            newTaskName.setText(name);
-            //newTaskDesc.setText(desc);
-            if (name.length() > 0)
-            {
-                newTaskSave.setTextColor(ContextCompat.getColor(getContext(), R.color.teal_200));
-            }
+    public void onClickSaveButt(View view) {
+        String id = database.getKey();
+        String name = nameText.getText().toString();
+        String desc = descText.getText().toString();
+        String time = timeText.getText().toString();
+        String date = dateText.getText().toString();
+        Task newTask = new Task(id, name, desc, time, date);
+        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(desc)
+                && !TextUtils.isEmpty(time) && !TextUtils.isEmpty(date)) {
+            database.push().setValue(newTask);
+            Toast.makeText(this, "Сохранено", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(AddTask.this, MainActivity.class);
+            startActivity(i);
         }
-
-//        database = new DBClient(getActivity());
-//        database.openDataBase();
-
-        newTaskName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().equals(""))
-                {
-                    newTaskSave.setEnabled(false);
-                    newTaskSave.setTextColor(Color.GRAY);
-                }
-                else
-                {
-                    newTaskSave.setEnabled(true);
-                    newTaskSave.setTextColor(ContextCompat.getColor(getContext(), R.color.teal_200));
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-
-        final boolean updated = ff1;
-
-        newTaskSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name1 = newTaskName.getText().toString();
-                if (updated)
-                {
-//                    database.updateTask(bundle.getInt("id"), name1);
-                }
-                else
-                {
-                    Task task = new Task();
-                    task.setName(name1);
-//                    task.setStatus(0); //TODO: status needed
-//                    database.insertTask(task);
-                }
-                dismiss();
-            }
-        });
-    }
-
-    @Override
-    public void onDismiss(DialogInterface dialogInterface)
-    {
-        Activity activity = getActivity();
-        if (activity instanceof DialogCloseListener)
-        {
-            ((DialogCloseListener)activity).handleDialogClose(dialogInterface);
+        else {
+            Toast.makeText(this, "Одно из полей было пропущено", Toast.LENGTH_SHORT).show();
         }
     }
 
+    public void onClickLoadButt(View view) {
+        database.removeValue();
+        Intent i = new Intent(AddTask.this, MainActivity.class);
+        startActivity(i);
+    }
 }

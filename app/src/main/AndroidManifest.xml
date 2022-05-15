@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project" >
         <activity
-            android:name=".DBTestActivity"
+            android:name=".task.AddTask"
             android:exported="false" />
         <activity
             android:name=".LoadingActivity"
@@ -23,7 +23,10 @@
         </activity>
         <activity android:name=".MainActivity" >
         </activity>
-        <activity android:name=".ReadActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
