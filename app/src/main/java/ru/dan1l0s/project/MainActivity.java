@@ -1,5 +1,6 @@
 package ru.dan1l0s.project;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +27,7 @@ import java.util.List;
 import ru.dan1l0s.project.recycler_view_adapter.Adapter;
 import ru.dan1l0s.project.task.AddTask;
 import ru.dan1l0s.project.task.Task;
+import ru.dan1l0s.project.task.UpdateTask;
 
 public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskListener{
 
@@ -96,21 +99,48 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
 
     @Override
     public void onTaskClick(int pos) {
-        Task tmp = list.get(pos);
-        System.out.println(tmp.getName() + " " + tmp.getId());
-        Query query = FirebaseDatabase.getInstance("https://to-do-list-project-data-ba" +
-                "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child(TASK_KEY).orderByChild("id").equalTo(tmp.getId());
-        query.addListenerForSingleValueEvent(new ValueEventListener()
-        {
+        Task task = list.get(pos);
+        Intent intent = new Intent(MainActivity.this, UpdateTask.class);
+        intent.putExtra("id", task.getId());
+        intent.putExtra("name",task.getName());
+        intent.putExtra("desc",task.getDesc());
+        intent.putExtra("date",task.getDate());
+        intent.putExtra("time",task.getTime());
+        startActivity(intent);
+        /*
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Вы точно хотите удалить задание " + list.get(pos).getName() + "?").setCancelable(false)
+                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                    snapshot.getRef().removeValue();
-                }
+            public void onClick(DialogInterface dialog, int which) {
+                Task tmp = list.get(pos);
+                System.out.println(tmp.getName() + " " + tmp.getId());
+                Query query = FirebaseDatabase.getInstance("https://to-do-list-project-data-ba" +
+                        "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child(TASK_KEY).orderByChild("id").equalTo(tmp.getId());
+                query.addListenerForSingleValueEvent(new ValueEventListener()
+                {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                            snapshot.getRef().removeValue();
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+
+                });
             }
+        }).setNegativeButton("Нет", new DialogInterface.OnClickListener() {
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                Toast.makeText(MainActivity.this, "ладно", Toast.LENGTH_SHORT).show();
             }
         });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+         */
     }
 }

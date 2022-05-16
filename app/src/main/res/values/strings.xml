@@ -4,9 +4,12 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="task_sample">This is an example of task text</string>
-    <string name="task_name_tint">Task name</string>
-    <string name="task_desc_tint">Task description</string>
+    <string name="task_name_hint">Task name</string>
+    <string name="task_desc_hint">Task description</string>
+    <string name="task_date_hint">Deadline (ex. 12/20/2020)</string>
+    <string name="task_time_hint">Deadline time (ex. 12:00)</string>
     <string name="loading_production">PRODUCTION</string>
     <string name="content_desc">i do not know what is it, but it\'s a warning, i guess..</string>
     <string name="button_text_save">Save</string>
+    <string name="button_text_update">Update</string>
 </resources>

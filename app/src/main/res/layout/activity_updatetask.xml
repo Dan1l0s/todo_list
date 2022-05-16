@@ -7,18 +7,18 @@
     tools:context=".task.AddTask">
 
     <Button
-        android:id="@+id/saveButton"
+        android:id="@+id/updateSaveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onClickSaveButt"
         android:layout_marginTop="40dp"
-        android:text="@string/button_text_save"
-        app:layout_constraintEnd_toEndOf="@+id/addDateText"
-        app:layout_constraintStart_toStartOf="@+id/addDateText"
-        app:layout_constraintTop_toBottomOf="@+id/addDateText" />
+        android:text="@string/button_text_update"
+        app:layout_constraintEnd_toEndOf="@+id/updateDateText"
+        app:layout_constraintStart_toStartOf="@+id/updateDateText"
+        app:layout_constraintTop_toBottomOf="@+id/updateDateText" />
 
     <EditText
-        android:id="@+id/addNameText"
+        android:id="@+id/updateNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/addDescText"
+        android:id="@+id/updateDescText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -40,24 +40,24 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addNameText" />
+        app:layout_constraintTop_toBottomOf="@+id/updateNameText" />
 
     <EditText
-        android:id="@+id/addDateText"
+        android:id="@+id/updateDateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:ems="11"
         android:hint="@string/task_date_hint"
-        android:maxLength="10"
         android:inputType="date"
+        android:layout_marginTop="50dp"
+        android:maxLength="10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addTimeText" />
+        app:layout_constraintTop_toBottomOf="@+id/updateTimeText" />
 
     <EditText
-        android:id="@+id/addTimeText"
+        android:id="@+id/updateTimeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -67,6 +67,6 @@
         android:inputType="time"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addDescText" />
+        app:layout_constraintTop_toBottomOf="@+id/updateDescText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

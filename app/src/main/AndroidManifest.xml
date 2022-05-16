@@ -13,6 +13,9 @@
             android:name=".task.AddTask"
             android:exported="false" />
         <activity
+            android:name=".task.UpdateTask"
+            android:exported="false" />
+        <activity
             android:name=".LoadingActivity"
             android:exported="true" >
             <intent-filter>
