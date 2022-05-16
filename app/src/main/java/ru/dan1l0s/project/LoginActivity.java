@@ -21,17 +21,22 @@ import com.google.android.gms.tasks.Task;
 public class LoginActivity extends AppCompatActivity {
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
+    GoogleSignInAccount user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initialisation();
+        if (user != null) {
+            goToMainActivity();
+        }
     }
 
     void initialisation() {
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this, gso);
+        user = GoogleSignIn.getLastSignedInAccount(this);
     }
 
 
@@ -47,12 +52,17 @@ public class LoginActivity extends AppCompatActivity {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 task.getResult(ApiException.class);
-                finish();
-                Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(i);
+                goToMainActivity();
             } catch (ApiException e) {
                 Toast.makeText(this, "Sign in failed", Toast.LENGTH_SHORT).show();
             }
         }
     }
+
+    void goToMainActivity(){
+        finish();
+        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(i);
+    }
+
 }

@@ -37,6 +37,16 @@
         android:contentDescription="@string/content_desc"
         android:src="@drawable/ic_baseline_add" />
 
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="12dp"
+        android:onClick="onClickLogOutButt"
+        android:text="Log Out" />
 
 
 </com.google.android.material.circularreveal.CircularRevealRelativeLayout>

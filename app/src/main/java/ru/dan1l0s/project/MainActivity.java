@@ -1,24 +1,25 @@
 package ru.dan1l0s.project;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -38,6 +39,9 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
     private DatabaseReference database;
     String TASK_KEY = "Tasks";
     private FloatingActionButton floatingActionButton;
+    GoogleSignInOptions gso;
+    GoogleSignInClient gsc;
+    GoogleSignInAccount user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,7 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
                 "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference(TASK_KEY);
 
         getDataFromDB();
-        initRecyclerView();
+        initialisation();
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,8 +92,11 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
         database.addValueEventListener(vListener);
     }
 
-    private void initRecyclerView()
+    private void initialisation()
     {
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gsc = GoogleSignIn.getClient(this, gso);
+        user = GoogleSignIn.getLastSignedInAccount(this);
         ListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
         adapter = new Adapter(this, list, this);
@@ -142,5 +149,11 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
         dialog.show();
 
          */
+    }
+
+    public void onClickLogOutButt(View view) {
+        gsc.signOut();
+        finish();
+        startActivity(new Intent(MainActivity.this,LoginActivity.class));
     }
 }
