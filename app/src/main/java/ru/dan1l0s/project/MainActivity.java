@@ -16,6 +16,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -51,8 +52,10 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(MainActivity.this, AddTask.class);
                 startActivityForResult(intent, 0);
+
             }
         });
 
@@ -93,6 +96,21 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
 
     @Override
     public void onTaskClick(int pos) {
-        //DatabaseReference db = FirebaseDatabase.getInstance().getReference("tasks").child(pos);
+        Task tmp = list.get(pos);
+        System.out.println(tmp.getName() + " " + tmp.getId());
+        Query query = FirebaseDatabase.getInstance("https://to-do-list-project-data-ba" +
+                "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child(TASK_KEY).orderByChild("id").equalTo(tmp.getId());
+        query.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                    snapshot.getRef().removeValue();
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 }

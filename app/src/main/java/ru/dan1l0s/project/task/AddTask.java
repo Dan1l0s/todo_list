@@ -23,7 +23,7 @@ public class AddTask extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bdtest);
+        setContentView(R.layout.activity_addtask);
         initElem();
         database = FirebaseDatabase.getInstance("https://to-do-list-project-data-ba" +
                 "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference(TASK_KEY);
@@ -44,7 +44,8 @@ public class AddTask extends AppCompatActivity {
 
 
         if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(desc)
-                && !TextUtils.isEmpty(time) && !TextUtils.isEmpty(date)) {
+                && !TextUtils.isEmpty(date)) {
+            if (time.isEmpty()) time = "23:59";
             String id = database.push().getKey();
             Task newTask = new Task(id, name, desc, time, date);;
             database.child(id).setValue(newTask);
@@ -58,7 +59,7 @@ public class AddTask extends AppCompatActivity {
     }
 
     public void onClickLoadButt(View view) {
-        finishActivity(0);
+
         //        Intent i = new Intent(AddTask.this, MainActivity.class);
 //        startActivity(i);
     }
