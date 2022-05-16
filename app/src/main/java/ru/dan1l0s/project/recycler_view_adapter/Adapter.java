@@ -1,11 +1,15 @@
 package ru.dan1l0s.project.recycler_view_adapter;
 
 import android.content.Context;
+import android.media.Image;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +24,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private OnTaskListener onTaskListener;
     private MainActivity activity;
     private List<Task> list;
+    private ImageView deleteImage;
 
     public Adapter(MainActivity activity, List<Task> list, OnTaskListener onTaskListener) {
         this.onTaskListener = onTaskListener;
@@ -45,7 +50,22 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             desc = view.findViewById(R.id.taskDesc);
             date = view.findViewById(R.id.taskDate);
             time = view.findViewById(R.id.taskTime);
+            deleteImage = view.findViewById(R.id.deleteImage);
             this.onTaskListener = onTaskListener;
+
+            deleteImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onTaskListener != null)
+                    {
+                        int pos = getAbsoluteAdapterPosition();
+                        if (pos != RecyclerView.NO_POSITION)
+                        {
+                            onTaskListener.onDeleteClick(pos);
+                        }
+                    }
+                }
+            });
             view.setOnClickListener(this);
         }
 
@@ -83,5 +103,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     public interface OnTaskListener {
         void onTaskClick(int pos);
+        void onDeleteClick(int pos);
     }
+
 }

@@ -38,7 +38,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/taskName"
-            android:layout_centerInParent="true"
             android:layout_marginTop="0dp"
             android:layout_toRightOf="@+id/checkbox"
             android:text="TEXT DESC"
@@ -50,7 +49,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/taskDesc"
-            android:layout_centerInParent="true"
             android:layout_marginTop="0dp"
             android:layout_toRightOf="@+id/checkbox"
             android:text="TEXT DATE"
@@ -68,6 +66,16 @@
             android:text="TEXT"
             android:textColor="@color/black"
             android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/deleteImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_baseline_delete_"
+            android:layout_marginRight="5dp"
+            android:backgroundTint="@color/transparent" />
 
     </RelativeLayout>
 

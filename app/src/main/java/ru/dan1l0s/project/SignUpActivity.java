@@ -69,7 +69,7 @@ public class SignUpActivity extends AppCompatActivity {
                     if (task.isSuccessful())
                     {
                         Toast.makeText(SignUpActivity.this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
-                        finish();
+                        startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                     }
                     else
                     {
