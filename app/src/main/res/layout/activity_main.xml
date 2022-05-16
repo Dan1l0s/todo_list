@@ -5,23 +5,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/listTitle"
+        android:id="@+id/userTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/title_home"
-        android:visibility="invisible"
+        android:layout_toRightOf="@+id/listTitle"
+        android:text="@string/username_show"
         android:textColor="@color/black"
-        android:textSize="32sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tasksText"
+        android:layout_below="@+id/logoutButton"
         android:nestedScrollingEnabled="true"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 

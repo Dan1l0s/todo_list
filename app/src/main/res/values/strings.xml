@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">project</string>
-    <string name="title_home">Home</string>
+    <string name="title_home">Tasks List:</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="task_sample">This is an example of task text</string>
@@ -11,5 +11,6 @@
     <string name="loading_production">PRODUCTION</string>
     <string name="content_desc">i do not know what is it, but it\'s a warning, i guess..</string>
     <string name="button_text_save">Save</string>
+    <string name="username_show">Signed in as</string>
     <string name="button_text_update">Update</string>
 </resources>

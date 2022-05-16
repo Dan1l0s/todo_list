@@ -10,10 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project">
         <activity
-            android:name=".LoginActivity"
+            android:name=".OldLoginActivity"
             android:exported="false" />
         <activity
             android:name=".task.AddTask"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".task.UpdateTask"

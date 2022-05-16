@@ -3,6 +3,8 @@ package ru.dan1l0s.project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -10,12 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,15 +32,16 @@ import ru.dan1l0s.project.task.UpdateTask;
 public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskListener{
 
     private RecyclerView ListRecyclerView;
+    private TextView textView;
     private Adapter adapter;
     private List<Task> list;
 
     private DatabaseReference database;
     String TASK_KEY = "Tasks";
     private FloatingActionButton floatingActionButton;
-    GoogleSignInOptions gso;
-    GoogleSignInClient gsc;
-    GoogleSignInAccount user;
+
+    FirebaseAuth mAuth;
+    Button btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +50,14 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
         ListRecyclerView = findViewById(R.id.listRecyclerView);
         floatingActionButton = findViewById(R.id.floating_action_button);
 
+
         getSupportActionBar().hide(); // same as in activity_loading
         database = FirebaseDatabase.getInstance("https://to-do-list-project-data-ba" +
                 "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference(TASK_KEY);
 
+
+
+        mAuth = FirebaseAuth.getInstance();
         getDataFromDB();
         initialisation();
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +70,25 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
             }
         });
 
+        btnLogout = findViewById(R.id.logoutButton);
+        btnLogout.setOnClickListener(v -> {
+            mAuth.signOut();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null)
+        {
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        }
+        else {
+            textView.setText("Signed in as " + mAuth.getCurrentUser().getEmail());
+        }
     }
 
     private void getDataFromDB() {
@@ -94,9 +117,7 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
 
     private void initialisation()
     {
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        gsc = GoogleSignIn.getClient(this, gso);
-        user = GoogleSignIn.getLastSignedInAccount(this);
+        textView = findViewById(R.id.userTitle);
         ListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
         adapter = new Adapter(this, list, this);
@@ -149,11 +170,5 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
         dialog.show();
 
          */
-    }
-
-    public void onClickLogOutButt(View view) {
-        gsc.signOut();
-        finish();
-        startActivity(new Intent(MainActivity.this,LoginActivity.class));
     }
 }

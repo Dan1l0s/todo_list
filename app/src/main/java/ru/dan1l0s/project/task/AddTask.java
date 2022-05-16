@@ -137,6 +137,15 @@ public class AddTask extends AppCompatActivity {
         String time = timeText.getText().toString();
         String date = dateText.getText().toString();
 
+        if (TextUtils.isEmpty(name)) nameText.setError("Поле не может быть пустым");
+        if (TextUtils.isEmpty(desc)) descText.setError("Поле не может быть пустым");
+        if (TextUtils.isEmpty(date)) dateText.setError("Поле не может быть пустым");
+        if (TextUtils.isEmpty(name))
+            nameText.requestFocus();
+        else if (TextUtils.isEmpty(desc))
+            descText.requestFocus();
+        else if (TextUtils.isEmpty(date))
+            dateText.requestFocus();
 
         if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(desc)
                 && !TextUtils.isEmpty(date))

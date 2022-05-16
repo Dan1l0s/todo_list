@@ -44,7 +44,11 @@ public class UpdateTask extends AppCompatActivity {
         dateText = findViewById(R.id.updateDateText);
 
         Intent intent = getIntent();
-        intent.getStringExtra("id");
+        String id = intent.getStringExtra("id");
+        nameText.setText(intent.getStringExtra("name"));
+        descText.setText(intent.getStringExtra("desc"));
+        timeText.setText(intent.getStringExtra("time"));
+        dateText.setText(intent.getStringExtra("date"));
 
         task = new Task(intent.getStringExtra("id"), intent.getStringExtra("name"), intent.getStringExtra("desc"),
                 intent.getStringExtra("time"), intent.getStringExtra("date"));
@@ -146,6 +150,16 @@ public class UpdateTask extends AppCompatActivity {
         String date = dateText.getText().toString();
 
         task = new Task(task.getId(), name, desc, time, date);
+
+        if (TextUtils.isEmpty(name)) nameText.setError("Поле не может быть пустым");
+        if (TextUtils.isEmpty(desc)) descText.setError("Поле не может быть пустым");
+        if (TextUtils.isEmpty(date)) dateText.setError("Поле не может быть пустым");
+        if (TextUtils.isEmpty(name))
+            nameText.requestFocus();
+        else if (TextUtils.isEmpty(desc))
+            descText.requestFocus();
+        else if (TextUtils.isEmpty(date))
+            dateText.requestFocus();
         if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(desc)
                 && !TextUtils.isEmpty(date))
         {
