@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "245134619894",
+    "firebase_url": "https://to-do-list-project-data-base-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "to-do-list-project-data-base",
     "storage_bucket": "to-do-list-project-data-base.appspot.com"
   },

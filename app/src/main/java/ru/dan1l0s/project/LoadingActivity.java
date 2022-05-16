@@ -32,7 +32,7 @@ public class LoadingActivity extends AppCompatActivity {
         list = new ArrayList<>();
         db = FirebaseDatabase.getInstance("https://to-do-list-project-data-ba" +
                 "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Tasks");
-        Intent intent = new Intent(LoadingActivity.this, MainActivity.class);
+        Intent intent = new Intent(LoadingActivity.this, LoginActivity.class);
         getFromDB();
         new Handler().postDelayed(new Runnable()
         {
