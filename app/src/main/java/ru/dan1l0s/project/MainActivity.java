@@ -91,11 +91,6 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
         {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         }
-        else if (!user.isEmailVerified())
-        {
-            Toast.makeText(MainActivity.this, "Необходимо подтверждение почты", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-        }
         else
         {
             textView.setText("Signed in as " + mAuth.getCurrentUser().getEmail());
