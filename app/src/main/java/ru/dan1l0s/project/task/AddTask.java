@@ -1,10 +1,6 @@
 package ru.dan1l0s.project.task;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -18,6 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
+import ru.dan1l0s.project.Constants;
 import ru.dan1l0s.project.MainActivity;
 import ru.dan1l0s.project.R;
 
@@ -32,7 +29,7 @@ public class AddTask extends AppCompatActivity {
         setContentView(R.layout.activity_addtask);
         initElem();
         database = FirebaseDatabase.getInstance("https://to-do-list-project-data-ba" +
-                "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference(TASK_KEY);
+                "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference(TASK_KEY).child(Constants.USER_UID);
     }
 
     private void initElem()

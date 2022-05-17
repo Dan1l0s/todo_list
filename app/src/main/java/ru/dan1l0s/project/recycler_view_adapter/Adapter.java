@@ -1,15 +1,12 @@
 package ru.dan1l0s.project.recycler_view_adapter;
 
 import android.content.Context;
-import android.media.Image;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
