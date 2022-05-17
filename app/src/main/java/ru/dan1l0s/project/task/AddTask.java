@@ -146,6 +146,7 @@ public class AddTask extends AppCompatActivity {
             descText.requestFocus();
         else if (TextUtils.isEmpty(date))
             dateText.requestFocus();
+        if (time.length() == 1) time+="0:00";
         if (time.length() == 2) time+=":00";
         if (time.length() == 4) time+="0";
 

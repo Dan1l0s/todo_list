@@ -1,15 +1,14 @@
 package ru.dan1l0s.project.recycler_view_adapter;
 
 import android.content.Context;
-import android.media.Image;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,13 +38,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        CheckBox task;
+        CheckBox checkBox;
         TextView name, desc, date, time;
         OnTaskListener onTaskListener;
 
         public ViewHolder(View view, OnTaskListener onTaskListener) {
             super(view);
-            task = view.findViewById(R.id.checkbox);
+            checkBox = view.findViewById(R.id.checkbox);
             name = view.findViewById(R.id.taskName);
             desc = view.findViewById(R.id.taskDesc);
             date = view.findViewById(R.id.taskDate);
@@ -83,6 +82,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         holder.date.setText(item.getDate());
         holder.time.setText(item.getTime());
 //        holder.task.setChecked(!IntToBool(item.getStatus())); // FIXME no anymore status variable
+        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (holder.checkBox.isChecked())
+                {
+                    System.out.println("yes :)");
+                }
+                else
+                {
+                    System.out.println("no");
+                }
+            }
+        });
     }
 
     private boolean IntToBool(int a) {
