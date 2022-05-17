@@ -50,6 +50,8 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mAuth = FirebaseAuth.getInstance();
+
         ListRecyclerView = findViewById(R.id.listRecyclerView);
         floatingActionButton = findViewById(R.id.floating_action_button);
 
@@ -60,7 +62,7 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
 
 
 
-        mAuth = FirebaseAuth.getInstance();
+
         getDataFromDB();
         initialisation();
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +91,13 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
         {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         }
-        else {
+        else if (!user.isEmailVerified())
+        {
+            Toast.makeText(MainActivity.this, "Необходимо подтверждение почты", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        }
+        else
+        {
             textView.setText("Signed in as " + mAuth.getCurrentUser().getEmail());
         }
     }

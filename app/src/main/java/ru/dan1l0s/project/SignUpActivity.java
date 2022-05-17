@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -69,6 +70,8 @@ public class SignUpActivity extends AppCompatActivity {
                     if (task.isSuccessful())
                     {
                         Toast.makeText(SignUpActivity.this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
+                        sendEmailVer();
+
                         startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                     }
                     else
@@ -78,5 +81,23 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+    private void sendEmailVer()
+    {
+        FirebaseUser user = mAuth.getCurrentUser();
+        assert user != null;
+        user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful())
+                {
+                    Toast.makeText(SignUpActivity.this, "Необходимо подтверждение почты (Вам было отправлено письмо)", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(SignUpActivity.this, "Ошибка отправки письма на почту", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
