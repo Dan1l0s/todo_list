@@ -18,6 +18,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class SignUpActivity extends AppCompatActivity {
 
     TextInputEditText RegEmail;
@@ -32,6 +34,8 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        Objects.requireNonNull(getSupportActionBar()).hide();
+
         RegEmail = findViewById(R.id.etRegEmail);
         RegPass = findViewById(R.id.etRegPass);
         LoginMessage = findViewById(R.id.tvLoginHere);
@@ -44,7 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         LoginMessage.setOnClickListener(v -> {
-            startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+            finish();
         });
     }
 
@@ -72,7 +76,7 @@ public class SignUpActivity extends AppCompatActivity {
                         //Toast.makeText(SignUpActivity.this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
                         sendEmailVer();
 
-                        startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                        finish();
                     }
                     else
                     {

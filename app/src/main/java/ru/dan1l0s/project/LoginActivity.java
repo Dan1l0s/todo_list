@@ -3,7 +3,9 @@ package ru.dan1l0s.project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,10 +19,13 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 
 public class LoginActivity extends AppCompatActivity {
     TextInputEditText editTextEmail;
     TextInputEditText editTextPass;
+    ImageView imageView;
     TextView textViewRegLink;
     Button buttonLogin;
 
@@ -28,13 +33,18 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Objects.requireNonNull(getSupportActionBar()).hide();
+
+        imageView = findViewById(R.id.imageLogView);
         editTextEmail = findViewById(R.id.etLoginEmail);
         editTextPass = findViewById(R.id.etLoginPass);
         textViewRegLink = findViewById(R.id.tvRegisterHere);
         buttonLogin = findViewById(R.id.btnLogin);
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -58,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         else if (TextUtils.isEmpty(password))
         {
+            imageView.setVisibility(View.VISIBLE);
             editTextPass.setError("Пароль не может быть пустым");
             editTextPass.requestFocus();
         }
@@ -79,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     else
                     {
+                        imageView.setVisibility(View.VISIBLE);
                         Toast.makeText(LoginActivity.this, "Ошибка при входе: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }

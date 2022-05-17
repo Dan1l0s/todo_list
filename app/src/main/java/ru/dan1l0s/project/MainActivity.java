@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 import ru.dan1l0s.project.recycler_view_adapter.Adapter;
 import ru.dan1l0s.project.task.AddTask;
@@ -74,11 +75,9 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
         floatingActionButton = findViewById(R.id.floating_action_button);
 
 
-        getSupportActionBar().hide(); // same as in activity_loading
+        Objects.requireNonNull(getSupportActionBar()).hide();
         database = FirebaseDatabase.getInstance("https://to-do-list-project-data-ba" +
                 "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference(TASK_KEY).child(Constants.USER_UID);
-
-
 
 
         getDataFromDB();
@@ -107,6 +106,7 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
 
     }
 
+
     private void getDataFromDB() {
         ValueEventListener vListener = new ValueEventListener() {
             @Override
@@ -120,7 +120,7 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
                     }
                     list.add(task);
                 }
-                Collections.sort(list, Task.compareTasksTime());
+                Collections.sort(list);
                 adapter.notifyDataSetChanged();
             }
 

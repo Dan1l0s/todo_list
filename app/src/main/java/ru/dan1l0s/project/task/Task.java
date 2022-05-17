@@ -2,7 +2,7 @@ package ru.dan1l0s.project.task;
 
 import java.util.Comparator;
 
-public class Task {
+public class Task implements Comparable{
     private String id;
     private String name;
     private String desc;
@@ -51,33 +51,70 @@ public class Task {
 
     public static Comparator<Task> compareTasksTime()
     {
-        Comparator comp = new Comparator<Task>(){
+        Comparator cmp = new Comparator<Task>(){
             @Override
             public int compare(Task t1, Task t2) {
                 Integer tmp1, tmp2;
                 tmp1 = Integer.parseInt(t1.getDate().substring(6,9));
                 tmp2 = Integer.parseInt(t2.getDate().substring(6,9));
                 if (!tmp1.equals(tmp2))
-                    return tmp1.compareTo(tmp2);
+                    return tmp1 - tmp2;
                 tmp1 = Integer.parseInt(t1.getDate().substring(3,4));
                 tmp2 = Integer.parseInt(t2.getDate().substring(3,4));
                 if (!tmp1.equals(tmp2))
-                    return tmp1.compareTo(tmp2);
+                    return tmp1 - tmp2;
                 tmp1 = Integer.parseInt(t1.getDate().substring(0,1));
                 tmp2 = Integer.parseInt(t2.getDate().substring(0,1));
                 if (!tmp1.equals(tmp2))
-                    return tmp1.compareTo(tmp2);
+                    return tmp1 - tmp2;
                 tmp1 = Integer.parseInt(t1.getTime().substring(0,1));
                 tmp2 = Integer.parseInt(t2.getTime().substring(0,1));
                 if (!tmp1.equals(tmp2))
-                    return tmp1.compareTo(tmp2);
+                    return tmp1 - tmp2;
                 tmp1 = Integer.parseInt(t1.getTime().substring(3,4));
                 tmp2 = Integer.parseInt(t2.getTime().substring(3,4));
                 if (!tmp1.equals(tmp2))
-                    return tmp1.compareTo(tmp2);
+                    return tmp1 - tmp2;
                 return 0;
             }
         };
-        return comp;
+        return cmp;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Task t2 = (Task)o;
+        int tmp1, tmp2;
+        tmp1 = Integer.parseInt(this.getDate().substring(6,10));
+        tmp2 = Integer.parseInt(t2.getDate().substring(6,10));
+        if (tmp1 != tmp2)
+        {
+            return (tmp1 > tmp2 ? 1 : -1);
+        }
+        tmp1 = Integer.parseInt(this.getDate().substring(3,5));
+        tmp2 = Integer.parseInt(t2.getDate().substring(3,5));
+        if (tmp1 != tmp2)
+        {
+            return (tmp1 > tmp2 ? 1 : -1);
+        }
+        tmp1 = Integer.parseInt(this.getDate().substring(0,2));
+        tmp2 = Integer.parseInt(t2.getDate().substring(0,2));
+        if (tmp1 != tmp2)
+        {
+            return (tmp1 > tmp2 ? 1 : -1);
+        }
+        tmp1 = Integer.parseInt(this.getTime().substring(0,2));
+        tmp2 = Integer.parseInt(t2.getTime().substring(0,2));
+        if (tmp1 != tmp2)
+        {
+            return (tmp1 > tmp2 ? 1 : -1);
+        }
+        tmp1 = Integer.parseInt(this.getTime().substring(3,5));
+        tmp2 = Integer.parseInt(t2.getTime().substring(3,5));
+        if (tmp1 != tmp2)
+        {
+            return (tmp1 > tmp2 ? 1 : -1);
+        }
+        return 0;
     }
 }

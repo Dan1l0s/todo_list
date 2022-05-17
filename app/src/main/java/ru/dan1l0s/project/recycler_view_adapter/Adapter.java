@@ -1,6 +1,7 @@
 package ru.dan1l0s.project.recycler_view_adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,12 +40,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        RelativeLayout relativeLayout;
         CheckBox checkBox;
         TextView name, desc, date, time;
         OnTaskListener onTaskListener;
 
         public ViewHolder(View view, OnTaskListener onTaskListener) {
             super(view);
+            relativeLayout = view.findViewById(R.id.cardLayout);
             checkBox = view.findViewById(R.id.checkbox);
             name = view.findViewById(R.id.taskName);
             desc = view.findViewById(R.id.taskDesc);
@@ -81,17 +85,18 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         holder.desc.setText(item.getDesc());
         holder.date.setText(item.getDate());
         holder.time.setText(item.getTime());
+        holder.relativeLayout.setBackgroundColor(Color.WHITE);
 //        holder.task.setChecked(!IntToBool(item.getStatus())); // FIXME no anymore status variable
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (holder.checkBox.isChecked())
                 {
-                    System.out.println("yes :)");
+                    holder.relativeLayout.setBackgroundColor(activity.getResources().getColor(R.color.light_green));
                 }
                 else
                 {
-                    System.out.println("no");
+                    holder.relativeLayout.setBackgroundColor(Color.WHITE);
                 }
             }
         });
