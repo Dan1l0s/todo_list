@@ -1,5 +1,7 @@
 package ru.dan1l0s.project.task;
 
+import java.util.Comparator;
+
 public class Task {
     private String id;
     private String name;
@@ -45,5 +47,37 @@ public class Task {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public static Comparator<Task> compareTasksTime()
+    {
+        Comparator comp = new Comparator<Task>(){
+            @Override
+            public int compare(Task t1, Task t2) {
+                Integer tmp1, tmp2;
+                tmp1 = Integer.parseInt(t1.getDate().substring(6,9));
+                tmp2 = Integer.parseInt(t2.getDate().substring(6,9));
+                if (!tmp1.equals(tmp2))
+                    return tmp1.compareTo(tmp2);
+                tmp1 = Integer.parseInt(t1.getDate().substring(3,4));
+                tmp2 = Integer.parseInt(t2.getDate().substring(3,4));
+                if (!tmp1.equals(tmp2))
+                    return tmp1.compareTo(tmp2);
+                tmp1 = Integer.parseInt(t1.getDate().substring(0,1));
+                tmp2 = Integer.parseInt(t2.getDate().substring(0,1));
+                if (!tmp1.equals(tmp2))
+                    return tmp1.compareTo(tmp2);
+                tmp1 = Integer.parseInt(t1.getTime().substring(0,1));
+                tmp2 = Integer.parseInt(t2.getTime().substring(0,1));
+                if (!tmp1.equals(tmp2))
+                    return tmp1.compareTo(tmp2);
+                tmp1 = Integer.parseInt(t1.getTime().substring(3,4));
+                tmp2 = Integer.parseInt(t2.getTime().substring(3,4));
+                if (!tmp1.equals(tmp2))
+                    return tmp1.compareTo(tmp2);
+                return 0;
+            }
+        };
+        return comp;
     }
 }
