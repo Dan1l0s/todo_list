@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +27,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import ru.dan1l0s.project.recycler_view_adapter.Adapter;
@@ -50,7 +54,21 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        textView = findViewById(R.id.userTitle);
+
         mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null)
+        {
+            finish();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        }
+        else
+        {
+            Constants.USER_UID = user.getUid();
+            textView.setText("Signed in as " + mAuth.getCurrentUser().getEmail());
+        }
 
         ListRecyclerView = findViewById(R.id.listRecyclerView);
         floatingActionButton = findViewById(R.id.floating_action_button);
@@ -58,7 +76,7 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
 
         getSupportActionBar().hide(); // same as in activity_loading
         database = FirebaseDatabase.getInstance("https://to-do-list-project-data-ba" +
-                "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference(TASK_KEY);
+                "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference(TASK_KEY).child(Constants.USER_UID);
 
 
 
@@ -86,15 +104,7 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user == null)
-        {
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-        }
-        else
-        {
-            textView.setText("Signed in as " + mAuth.getCurrentUser().getEmail());
-        }
+
     }
 
     private void getDataFromDB() {
@@ -110,6 +120,7 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
                     }
                     list.add(task);
                 }
+                Collections.sort(list, Task.compareTasksTime());
                 adapter.notifyDataSetChanged();
             }
 
@@ -121,11 +132,11 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
         database.addValueEventListener(vListener);
     }
 
+
     private void initialisation()
     {
-        textView = findViewById(R.id.userTitle);
         ListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        list = new ArrayList<>();
+        list = new ArrayList<Task>();
         adapter = new Adapter(this, list, this);
         ListRecyclerView.setAdapter(adapter);
     }
@@ -141,7 +152,7 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
                         Task tmp = list.get(pos);
                         System.out.println(tmp.getName() + " " + tmp.getId());
                         Query query = FirebaseDatabase.getInstance("https://to-do-list-project-data-ba" +
-                                "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child(TASK_KEY).orderByChild("id").equalTo(tmp.getId());
+                                "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child(TASK_KEY).child(Constants.USER_UID).orderByChild("id").equalTo(tmp.getId());
                         query.addListenerForSingleValueEvent(new ValueEventListener()
                         {
                             @Override
