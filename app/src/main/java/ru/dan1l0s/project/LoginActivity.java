@@ -23,13 +23,13 @@ import java.util.Objects;
 
 
 public class LoginActivity extends AppCompatActivity {
-    TextInputEditText editTextEmail;
-    TextInputEditText editTextPass;
-    ImageView imageView;
-    TextView textViewRegLink;
-    Button buttonLogin;
+    private TextInputEditText editTextEmail;
+    private TextInputEditText editTextPass;
+    private ImageView imageView;
+    private TextView textViewRegLink;
+    private Button buttonLogin;
 
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,15 +45,10 @@ public class LoginActivity extends AppCompatActivity {
         textViewRegLink = findViewById(R.id.tvRegisterHere);
         buttonLogin = findViewById(R.id.btnLogin);
 
-
         mAuth = FirebaseAuth.getInstance();
 
-        buttonLogin.setOnClickListener(v -> {
-            loginUser();
-        });
-        textViewRegLink.setOnClickListener(v -> {
-            startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
-        });
+        buttonLogin.setOnClickListener(v -> {loginUser();});
+        textViewRegLink.setOnClickListener(v -> {startActivity(new Intent(LoginActivity.this, SignUpActivity.class));});
     }
 
     private void loginUser()
@@ -83,7 +78,8 @@ public class LoginActivity extends AppCompatActivity {
                         {
                             Toast.makeText(LoginActivity.this, "Необходимо подтверждение почты", Toast.LENGTH_SHORT).show();
                         }
-                        else {
+                        else
+                        {
                             Toast.makeText(LoginActivity.this, "Вход выполнен успешно", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         }

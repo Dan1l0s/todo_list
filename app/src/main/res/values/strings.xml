@@ -13,4 +13,5 @@
     <string name="button_text_save">Save</string>
     <string name="username_show">Signed in as</string>
     <string name="button_text_update">Update</string>
+    <string name="reg_email_error">Email can\'t be empty</string>
 </resources>

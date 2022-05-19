@@ -86,7 +86,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         holder.date.setText(item.getDate());
         holder.time.setText(item.getTime());
         holder.relativeLayout.setBackgroundColor(Color.WHITE);
-//        holder.task.setChecked(!IntToBool(item.getStatus())); // FIXME no anymore status variable
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

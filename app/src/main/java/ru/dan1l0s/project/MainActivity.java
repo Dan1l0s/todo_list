@@ -37,19 +37,19 @@ import ru.dan1l0s.project.task.AddTask;
 import ru.dan1l0s.project.task.Task;
 import ru.dan1l0s.project.task.UpdateTask;
 
-public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskListener{
-
+public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskListener
+{
     private RecyclerView ListRecyclerView;
     private TextView textView;
     private Adapter adapter;
     private List<Task> list;
 
     private DatabaseReference database;
-    String TASK_KEY = "Tasks";
+    private String TASK_KEY = "Tasks";
     private FloatingActionButton floatingActionButton;
 
-    FirebaseAuth mAuth;
-    Button btnLogout;
+    private FirebaseAuth mAuth;
+    private Button btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +103,6 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
     @Override
     protected void onStart() {
         super.onStart();
-
     }
 
 
@@ -112,9 +111,11 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (list.size() > 0) list.clear();
-                for (DataSnapshot ds : snapshot.getChildren()) {
+                for (DataSnapshot ds : snapshot.getChildren())
+                {
                     Task task = ds.getValue(Task.class);
-                    if (task == null) {
+                    if (task == null)
+                    {
                         Toast.makeText(MainActivity.this, "Было получено пустое задание", Toast.LENGTH_SHORT).show();
                         continue;
                     }
@@ -143,7 +144,8 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
 
 
     @Override
-    public void onDeleteClick(int pos) {
+    public void onDeleteClick(int pos)
+    {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Вы точно хотите удалить задание " + list.get(pos).getName() + "?").setCancelable(false)
                 .setPositiveButton("Да", new DialogInterface.OnClickListener() {
@@ -157,7 +159,8 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
                         {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                                for (DataSnapshot snapshot: dataSnapshot.getChildren())
+                                {
                                     snapshot.getRef().removeValue();
                                 }
                             }

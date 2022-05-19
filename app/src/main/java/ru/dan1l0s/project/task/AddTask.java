@@ -56,8 +56,10 @@ public class AddTask extends AppCompatActivity {
                 {
                     if (s.charAt(0)-'0' > 3)   s.replace(0, 1, "");
                 }
-                else if (s.length() == 2) {
-                    if (s.charAt(0)-'0' == 3) {
+                else if (s.length() == 2)
+                {
+                    if (s.charAt(0)-'0' == 3)
+                    {
                         if (s.charAt(1)-'0' > 1) s.replace(1, 2, "");
                     }
                 }
@@ -68,7 +70,8 @@ public class AddTask extends AppCompatActivity {
                     {
                         s.replace(2, 3, "");
                     }
-                    else {
+                    else
+                    {
                         s.insert(2,"/");
                     }
                 }
@@ -100,27 +103,31 @@ public class AddTask extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
+            public void afterTextChanged(Editable s)
+            {
                 if (s.length() == 1)
                 {
                     if (s.charAt(0)-'0' > 2)   s.replace(0, 1, "");
                 }
-                else if (s.length() == 2) {
-                    if (s.charAt(0)-'0' == 2) {
+                else if (s.length() == 2)
+                {
+                    if (s.charAt(0)-'0' == 2)
+                    {
                         if (s.charAt(1)-'0' > 3) s.replace(1, 2, "");
                     }
                 }
                 else if (s.length() == 3)
                 {
-                        if (s.charAt(2) == ':') s.replace(2, 3, "");
-                        else if (s.charAt(2)-'0' > 5)
-                        {
-                            s.replace(2, 3, "");
-                        }
-                        else {
-                            s.insert(2,":");
-                        }
+                    if (s.charAt(2) == ':') s.replace(2, 3, "");
+                    else if (s.charAt(2)-'0' > 5)
+                    {
+                        s.replace(2, 3, "");
                     }
+                    else
+                    {
+                        s.insert(2,":");
+                    }
+                }
             }
         };
         dateText.addTextChangedListener(dateWatcher);

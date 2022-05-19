@@ -22,12 +22,12 @@ import java.util.Objects;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    TextInputEditText RegEmail;
-    TextInputEditText RegPass;
-    TextView LoginMessage;
-    Button buttonReg;
+    private TextInputEditText RegEmail;
+    private TextInputEditText RegPass;
+    private TextView LoginMessage;
+    private Button buttonReg;
 
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,22 +43,19 @@ public class SignUpActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        buttonReg.setOnClickListener(view -> {
-            createUser();
-        });
+        buttonReg.setOnClickListener(view -> {createUser();});
 
-        LoginMessage.setOnClickListener(v -> {
-            finish();
-        });
+        LoginMessage.setOnClickListener(v -> {finish();});
     }
 
-    private void createUser(){
+    private void createUser()
+    {
         String email = RegEmail.getText().toString();
         String password = RegPass.getText().toString();
 
         if (TextUtils.isEmpty(email))
         {
-            RegEmail.setError("Email не может быть пустым");
+            RegEmail.setError("");
             RegEmail.requestFocus();
         }
         else if (TextUtils.isEmpty(password))

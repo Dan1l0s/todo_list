@@ -64,10 +64,12 @@ public class UpdateTask extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if (s.length() == 1)
                 {
-                    if (s.charAt(0)-'0' > 3)   s.replace(0, 1, "");
+                    if (s.charAt(0)-'0' > 3) s.replace(0, 1, "");
                 }
-                else if (s.length() == 2) {
-                    if (s.charAt(0)-'0' == 3) {
+                else if (s.length() == 2)
+                {
+                    if (s.charAt(0)-'0' == 3)
+                    {
                         if (s.charAt(1)-'0' > 1) s.replace(1, 2, "");
                     }
                 }
@@ -78,7 +80,8 @@ public class UpdateTask extends AppCompatActivity {
                     {
                         s.replace(2, 3, "");
                     }
-                    else {
+                    else
+                    {
                         s.insert(2,"/");
                     }
                 }
@@ -115,8 +118,10 @@ public class UpdateTask extends AppCompatActivity {
                 {
                     if (s.charAt(0)-'0' > 2)   s.replace(0, 1, "");
                 }
-                else if (s.length() == 2) {
-                    if (s.charAt(0)-'0' == 2) {
+                else if (s.length() == 2)
+                {
+                    if (s.charAt(0)-'0' == 2)
+                    {
                         if (s.charAt(1)-'0' > 3) s.replace(1, 2, "");
                     }
                 }
@@ -170,7 +175,8 @@ public class UpdateTask extends AppCompatActivity {
             Toast.makeText(this, "Сохранено", Toast.LENGTH_SHORT).show();
             finish();
         }
-        else {
+        else
+        {
             Toast.makeText(this, "Одно из полей было пропущено", Toast.LENGTH_SHORT).show();
         }
     }
