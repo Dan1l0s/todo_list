@@ -21,14 +21,13 @@ public class UpdateTask extends AppCompatActivity {
     private EditText nameText, descText, timeText, dateText;
     private DatabaseReference database;
     private Task task;
-    private String TASK_KEY = "Tasks";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_updatetask);
         database = FirebaseDatabase.getInstance("https://to-do-list-project-data-ba" +
-                "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference(TASK_KEY).child(Constants.USER_UID);
+                "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference(Constants.USERS_KEY).child(Constants.USER_UID);
         initElem();
     }
 
@@ -156,9 +155,9 @@ public class UpdateTask extends AppCompatActivity {
 
         task = new Task(task.getId(), name, desc, time, date);
 
-        if (TextUtils.isEmpty(name)) nameText.setError("Поле не может быть пустым");
-        if (TextUtils.isEmpty(desc)) descText.setError("Поле не может быть пустым");
-        if (TextUtils.isEmpty(date)) dateText.setError("Поле не может быть пустым");
+        if (TextUtils.isEmpty(name)) nameText.setError(getString(R.string.edit_text_empty));
+        if (TextUtils.isEmpty(desc)) descText.setError(getString(R.string.edit_text_empty));
+        if (TextUtils.isEmpty(date)) dateText.setError(getString(R.string.edit_text_empty));
 
 
         if (TextUtils.isEmpty(name))
@@ -172,12 +171,12 @@ public class UpdateTask extends AppCompatActivity {
         {
             if (time.isEmpty()) time = "23:59";
             database.child(task.getId()).setValue(task);
-            Toast.makeText(this, "Сохранено", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.save_task_succ), Toast.LENGTH_SHORT).show();
             finish();
         }
         else
         {
-            Toast.makeText(this, "Одно из полей было пропущено", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.save_task_error), Toast.LENGTH_SHORT).show();
         }
     }
 }

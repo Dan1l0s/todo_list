@@ -21,7 +21,6 @@ import ru.dan1l0s.project.R;
 public class AddTask extends AppCompatActivity {
     private EditText nameText, descText, timeText, dateText;
     private DatabaseReference database;
-    private String TASK_KEY = "Tasks";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +28,7 @@ public class AddTask extends AppCompatActivity {
         setContentView(R.layout.activity_addtask);
         initElem();
         database = FirebaseDatabase.getInstance("https://to-do-list-project-data-ba" +
-                "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference(TASK_KEY).child(Constants.USER_UID);
+                "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference(Constants.USERS_KEY).child(Constants.USER_UID);
     }
 
     private void initElem()
@@ -141,9 +140,9 @@ public class AddTask extends AppCompatActivity {
         String time = timeText.getText().toString();
         String date = dateText.getText().toString();
 
-        if (TextUtils.isEmpty(name)) nameText.setError("Поле не может быть пустым");
-        if (TextUtils.isEmpty(desc)) descText.setError("Поле не может быть пустым");
-        if (TextUtils.isEmpty(date)) dateText.setError("Поле не может быть пустым");
+        if (TextUtils.isEmpty(name)) nameText.setError(getString(R.string.edit_text_empty));
+        if (TextUtils.isEmpty(desc)) descText.setError(getString(R.string.edit_text_empty));
+        if (TextUtils.isEmpty(date)) dateText.setError(getString(R.string.edit_text_empty));
         if (TextUtils.isEmpty(name))
             nameText.requestFocus();
         else if (TextUtils.isEmpty(desc))
@@ -161,11 +160,11 @@ public class AddTask extends AppCompatActivity {
             String id = database.push().getKey();
             Task newTask = new Task(id, name, desc, time, date);;
             database.child(id).setValue(newTask);
-            Toast.makeText(this, "Сохранено", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.save_task_succ), Toast.LENGTH_SHORT).show();
             finish();
         }
         else {
-            Toast.makeText(this, "Одно из полей было пропущено", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.save_task_error), Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -55,12 +55,12 @@ public class SignUpActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(email))
         {
-            RegEmail.setError("");
+            RegEmail.setError(getString(R.string.reg_email_error));
             RegEmail.requestFocus();
         }
         else if (TextUtils.isEmpty(password))
         {
-            RegPass.setError("Пароль не может быть пустым");
+            RegPass.setError(getString(R.string.reg_pass_error));
             RegPass.requestFocus();
         }
         else
@@ -70,14 +70,14 @@ public class SignUpActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful())
                     {
-                        //Toast.makeText(SignUpActivity.this, "Регистрация прошла успешно", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(SignUpActivity.this, getString(R.string.auth_reminder), Toast.LENGTH_SHORT).show();
                         sendEmailVer();
 
                         finish();
                     }
                     else
                     {
-                        Toast.makeText(SignUpActivity.this, "Ошибка при регистрации: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignUpActivity.this, getString(R.string.reg_error) + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
             });
@@ -92,11 +92,11 @@ public class SignUpActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful())
                 {
-                    Toast.makeText(SignUpActivity.this, "Необходимо подтверждение почты (Вам было отправлено письмо)", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, getString(R.string.email_auth_error), Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    Toast.makeText(SignUpActivity.this, "Ошибка отправки письма на почту", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, getString(R.string.email_failed), Toast.LENGTH_SHORT).show();
                 }
             }
         });

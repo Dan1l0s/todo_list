@@ -31,7 +31,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="3dp"
             android:layout_toRightOf="@+id/checkbox"
-            android:text="TEXT"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -42,7 +42,7 @@
             android:layout_below="@+id/taskName"
             android:layout_marginTop="0dp"
             android:layout_toRightOf="@+id/checkbox"
-            android:text="TEXT DESC"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="12sp" />
 
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/deleteImage"
             android:layout_marginTop="5dp"
-            android:text="TEXT DATE"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="14sp" />
 
@@ -64,7 +64,7 @@
             android:layout_marginStart="38dp"
             android:layout_marginTop="0dp"
             android:layout_toLeftOf="@id/deleteImage"
-            android:text="TEXT"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="14sp" />
 

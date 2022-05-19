@@ -8,13 +8,13 @@
         android:id="@+id/userTitle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_toStartOf="@+id/logoutButton"
+        android:layout_above="@+id/listRecyclerView"
+        android:layout_centerInParent="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
-        android:layout_above="@+id/listRecyclerView"
-        android:layout_centerInParent="true"
+        android:layout_toStartOf="@+id/logoutButton"
         android:text="@string/username_show"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -43,14 +43,17 @@
 
     <Button
         android:id="@+id/logoutButton"
-        android:layout_width="75dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="12dp"
         android:onClick="onClickLogOutButt"
-        android:text="Log Out" />
+        android:minLines="1"
+        android:maxLines="1"
+        android:textSize="12sp"
+        android:text="@string/logout_button_name" />
 
 
 </com.google.android.material.circularreveal.CircularRevealRelativeLayout>

@@ -22,7 +22,6 @@ import ru.dan1l0s.project.task.Task;
 public class LoadingActivity extends AppCompatActivity {
     private DatabaseReference db;
     private List<Task> list;
-    private String TASK_KEY = "Tasks";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +30,7 @@ public class LoadingActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
         list = new ArrayList<>();
         db = FirebaseDatabase.getInstance("https://to-do-list-project-data-ba" +
-                "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference(TASK_KEY).child(Constants.USER_UID);
+                "se-default-rtdb.europe-west1.firebasedatabase.app/").getReference(Constants.USERS_KEY).child(Constants.USER_UID);
         Intent intent = new Intent(LoadingActivity.this, MainActivity.class);
         getFromDB();
         new Handler().postDelayed(new Runnable()
