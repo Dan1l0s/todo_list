@@ -86,6 +86,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         holder.date.setText(item.getDate());
         holder.time.setText(item.getTime());
         holder.relativeLayout.setBackgroundColor(Color.WHITE);
+        if (item.compareToDate())
+        {
+            holder.relativeLayout.setBackgroundColor(activity.getResources().getColor(R.color.light_red));
+        }
+        else
+        {
+            holder.relativeLayout.setBackgroundColor(Color.WHITE);
+        }
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -95,27 +103,26 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 }
                 else
                 {
-                    holder.relativeLayout.setBackgroundColor(Color.WHITE);
+                    if (item.compareToDate())
+                    {
+                        holder.relativeLayout.setBackgroundColor(activity.getResources().getColor(R.color.light_red));
+                    }
+                    else
+                    {
+                        holder.relativeLayout.setBackgroundColor(Color.WHITE);
+                    }
                 }
             }
         });
     }
 
-    private boolean IntToBool(int a) {
-        return a != 0;
-    }
+    private boolean IntToBool(int a) { return a != 0; }
 
-    public int getItemCount() {
-        return list.size();
-    }
+    public int getItemCount() { return list.size(); }
 
-    public void setList(List<Task> list) {
-        this.list = list;
-    }
+    public void setList(List<Task> list) { this.list = list; }
 
-    public Context getContext() {
-        return activity;
-    }
+    public Context getContext() { return activity; }
 
     public interface OnTaskListener {
         void onTaskClick(int pos);

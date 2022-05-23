@@ -1,6 +1,7 @@
 package ru.dan1l0s.project.task;
 
 import java.util.Comparator;
+import java.util.Date;
 
 public class Task implements Comparable{
     private String id;
@@ -84,5 +85,58 @@ public class Task implements Comparable{
             return (tmp1 > tmp2 ? 1 : -1);
         }
         return 0;
+    }
+
+    public boolean compareToDate()
+    {
+        Date date = new Date();
+        int tmp1, tmp2;
+        tmp1 = Integer.parseInt(this.getDate().substring(6,10));
+        tmp2 = Integer.parseInt(date.toString().substring(24,28));
+        if (tmp1 < tmp2)
+        {
+            return true;
+        }
+        else if (tmp1 > tmp2)
+        {
+            return false;
+        }
+        tmp1 = Integer.parseInt(this.getDate().substring(3,5));
+        tmp2 = date.getMonth() + 1;
+        if (tmp1 < tmp2)
+        {
+            return true;
+        }
+        if (tmp1 > tmp2)
+        {
+            return false;
+        }
+        tmp1 = Integer.parseInt(this.getDate().substring(0,2));
+        tmp2 = date.getDate();
+        if (tmp1 < tmp2)
+        {
+            return true;
+        }
+        if (tmp1 > tmp2)
+        {
+            return false;
+        }
+        tmp1 = Integer.parseInt(this.getTime().substring(0,2));
+        tmp2 = date.getHours()+3;
+        if (tmp1 < tmp2)
+        {
+            return true;
+        }
+        if (tmp1 > tmp2)
+        {
+            return false;
+        }
+        tmp1 = Integer.parseInt(this.getTime().substring(3,5));
+        tmp2 = date.getMinutes();
+        if (tmp1 > tmp2)
+        {
+            return false;
+        }
+        return true;
     }
 }

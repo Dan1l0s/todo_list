@@ -23,7 +23,7 @@
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="ok_then">ладно</string>
-    <string name="logout_button_name">Logout</string>
+    <string name="logout_button_name">Выйти</string>
     <string name="auth_reminder">Письмо для подтверждения почты было отправлено</string>
     <string name="reg_error">Ошибка при регистрации: </string>
     <string name="email_failed">Ошибка отправки письма на почту</string>

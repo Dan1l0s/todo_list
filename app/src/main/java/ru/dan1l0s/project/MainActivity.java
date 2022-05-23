@@ -29,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -146,7 +147,7 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
     public void onDeleteClick(int pos)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(getString(R.string.delete_task_confirm) + list.get(pos).getName() + getString(R.string.question_sign)).setCancelable(false)
+        builder.setMessage(getString(R.string.delete_task_confirm) + " " + list.get(pos).getName() + getString(R.string.question_sign)).setCancelable(false)
                 .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
