@@ -8,8 +8,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,11 +26,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 import ru.dan1l0s.project.recycler_view_adapter.Adapter;
 import ru.dan1l0s.project.task.AddTask;

@@ -1,6 +1,5 @@
 package ru.dan1l0s.project.task;
 
-import java.util.Comparator;
 import java.util.Date;
 
 public class Task implements Comparable{

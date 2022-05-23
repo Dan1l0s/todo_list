@@ -12,12 +12,9 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-
 import java.util.Objects;
 
 import ru.dan1l0s.project.Constants;
-import ru.dan1l0s.project.MainActivity;
 import ru.dan1l0s.project.R;
 
 public class AddTask extends AppCompatActivity {
@@ -150,24 +147,25 @@ public class AddTask extends AppCompatActivity {
             nameText.requestFocus();
         else if (TextUtils.isEmpty(desc))
             descText.requestFocus();
-        else if (TextUtils.isEmpty(date))
+        else if (TextUtils.isEmpty(date) || date.length() < 10)
             dateText.requestFocus();
         if (time.length() == 1) time+="0:00";
         if (time.length() == 2) time+=":00";
         if (time.length() == 4) time+="0";
 
         if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(desc)
-                && !TextUtils.isEmpty(date))
+                && date.length() == 10)
         {
             if (time.isEmpty()) time = "23:59";
             String id = database.push().getKey();
-            Task newTask = new Task(id, name, desc, time, date);;
+            Task newTask = new Task(id, name, desc, time, date);
             database.child(id).setValue(newTask);
             Toast.makeText(this, getString(R.string.save_task_succ), Toast.LENGTH_SHORT).show();
             finish();
         }
-        else {
+        else if (date.length() != 10)
+            Toast.makeText(this, getString(R.string.save_task_incorrect_date), Toast.LENGTH_SHORT).show();
+        else
             Toast.makeText(this, getString(R.string.save_task_error), Toast.LENGTH_SHORT).show();
-        }
     }
 }

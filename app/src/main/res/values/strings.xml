@@ -14,6 +14,7 @@
     <string name="edit_text_empty">This field can\'t be empty</string>
     <string name="save_task_succ">Saved</string>
     <string name="save_task_error">Some fields are empty</string>
+    <string name="save_task_incorrect_date">The date must be represented in the format dd/mm/yyyy</string>
     <string name="email_auth_error">E-mail must be verified (check your mailbox)</string>
     <string name="login_succ">Login successful</string>
     <string name="login_error">Login failed, reason: </string>

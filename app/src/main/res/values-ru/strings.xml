@@ -35,4 +35,5 @@
     <string name="already_registered">Уже зарегистрированы?</string>
     <string name="register_here">Зарегистрируйтесь</string>
     <string name="login_here">Войдите в аккаунт</string>
+    <string name="save_task_incorrect_date">Дата должна быть представлена в формате дд/мм/гггг</string>
 </resources>
