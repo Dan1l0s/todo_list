@@ -9,6 +9,8 @@ public class Task implements Comparable{
     private String desc;
     private String time;
     private String date;
+    private int status = 0;
+    private int duration;
 
     public Task() {
 
@@ -20,6 +22,30 @@ public class Task implements Comparable{
         this.desc = desc;
         this.time = time;
         this.date = date;
+    }
+    public Task(String id, String name, String desc, String time, String date, int status) {
+        this.id = id;
+        this.name = name;
+        this.desc = desc;
+        this.time = time;
+        this.date = date;
+        this.status = status;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     public String getId() {return id;}
@@ -53,6 +79,10 @@ public class Task implements Comparable{
     @Override
     public int compareTo(Object o) {
         Task t2 = (Task)o;
+        if (this.getStatus() != t2.getStatus())
+        {
+            return (this.getStatus() > t2.getStatus() ? 1 : -1);
+        }
         int tmp1, tmp2;
         tmp1 = Integer.parseInt(this.getDate().substring(6,10));
         tmp2 = Integer.parseInt(t2.getDate().substring(6,10));
