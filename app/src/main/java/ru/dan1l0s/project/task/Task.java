@@ -10,7 +10,7 @@ public class Task implements Comparable{
     private String time;
     private String date;
     private int status = 0;
-    private int duration;
+    private int duration = 0;
 
     public Task() {
 
@@ -22,14 +22,6 @@ public class Task implements Comparable{
         this.desc = desc;
         this.time = time;
         this.date = date;
-    }
-    public Task(String id, String name, String desc, String time, String date, int status) {
-        this.id = id;
-        this.name = name;
-        this.desc = desc;
-        this.time = time;
-        this.date = date;
-        this.status = status;
     }
 
     public int getStatus() {

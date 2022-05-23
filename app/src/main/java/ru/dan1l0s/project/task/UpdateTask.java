@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
+
 import ru.dan1l0s.project.Constants;
 import ru.dan1l0s.project.R;
 
@@ -33,6 +35,7 @@ public class UpdateTask extends AppCompatActivity {
 
     private void initElem()
     {
+        Objects.requireNonNull(getSupportActionBar()).hide();
         nameText = findViewById(R.id.updateNameText);
         descText = findViewById(R.id.updateDescText);
         timeText = findViewById(R.id.updateTimeText);

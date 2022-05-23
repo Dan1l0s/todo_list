@@ -14,6 +14,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
 
+import java.util.Objects;
+
 import ru.dan1l0s.project.Constants;
 import ru.dan1l0s.project.MainActivity;
 import ru.dan1l0s.project.R;
@@ -33,6 +35,7 @@ public class AddTask extends AppCompatActivity {
 
     private void initElem()
     {
+        Objects.requireNonNull(getSupportActionBar()).hide();
         nameText = findViewById(R.id.addNameText);
         descText = findViewById(R.id.addDescText);
         timeText = findViewById(R.id.addTimeText);
