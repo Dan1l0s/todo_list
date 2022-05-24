@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        imageView = findViewById(R.id.imageLogView);
         editTextEmail = findViewById(R.id.etLoginEmail);
         editTextPass = findViewById(R.id.etLoginPass);
         textViewRegLink = findViewById(R.id.tvRegisterHere);
@@ -86,7 +85,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     else
                     {
-                        imageView.setVisibility(View.VISIBLE);
                         Toast.makeText(LoginActivity.this, getString(R.string.login_error) + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
