@@ -110,6 +110,7 @@ public class Task implements Comparable{
 
     public boolean compareToDate()
     {
+        //test
         Date date = new Date();
         int tmp1, tmp2;
         tmp1 = Integer.parseInt(this.getDate().substring(6,10));
