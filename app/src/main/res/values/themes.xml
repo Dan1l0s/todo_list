@@ -18,6 +18,5 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:statusBarColor">@android:color/holo_red_dark</item>
         <item name="android:windowSoftInputMode">adjustResize</item>
-
     </style>
 </resources>

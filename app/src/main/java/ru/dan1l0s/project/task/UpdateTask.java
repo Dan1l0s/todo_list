@@ -152,6 +152,8 @@ public class UpdateTask extends AppCompatActivity {
         String time = timeText.getText().toString();
         String date = dateText.getText().toString();
 
+        if (date.length() == 0) date = "31/12/2099";
+        if (time.length() == 0) time = "23:59";
         if (time.length() == 1) time+="0:00";
         if (time.length() == 2) time+=":00";
         if (time.length() == 4) time+="0";
@@ -160,17 +162,17 @@ public class UpdateTask extends AppCompatActivity {
 
         if (TextUtils.isEmpty(name)) nameText.setError(getString(R.string.edit_text_empty));
         if (TextUtils.isEmpty(desc)) descText.setError(getString(R.string.edit_text_empty));
-        if (TextUtils.isEmpty(date)) dateText.setError(getString(R.string.edit_text_empty));
+        if (!TextUtils.isEmpty(date) && date.length() != 10) dateText.setError(getString(R.string.edit_text_empty));
 
 
         if (TextUtils.isEmpty(name))
             nameText.requestFocus();
         else if (TextUtils.isEmpty(desc))
             descText.requestFocus();
-        else if (TextUtils.isEmpty(date))
+        else if (date.length() != 0 && date.length() < 10)
             dateText.requestFocus();
         if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(desc)
-                && !TextUtils.isEmpty(date))
+                && (date.length() == 10 || date.length() == 0))
         {
             if (time.isEmpty()) time = "23:59";
             database.child(task.getId()).setValue(task);
