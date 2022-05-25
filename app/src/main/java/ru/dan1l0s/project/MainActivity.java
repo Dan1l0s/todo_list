@@ -51,8 +51,8 @@ public class  MainActivity extends AppCompatActivity implements Adapter.OnTaskLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = findViewById(R.id.userTitle);
 
+        textView = findViewById(R.id.userTitle);
         mAuth = FirebaseAuth.getInstance();
 
         FirebaseUser user = mAuth.getCurrentUser();

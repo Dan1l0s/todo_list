@@ -110,11 +110,10 @@ public class Task implements Comparable{
 
     public boolean compareToDate()
     {
-        //test
         Date date = new Date();
         int tmp1, tmp2;
         tmp1 = Integer.parseInt(this.getDate().substring(6,10));
-        //tmp2 = Integer.parseInt(date.toString().substring(24,28)); // emulator comparator
+//        tmp2 = Integer.parseInt(date.toString().substring(24,28)); // emulator comparator
         tmp2 = Integer.parseInt(date.toString().substring(30,34)); // physical phone
         if (tmp1 < tmp2)
         {

@@ -158,7 +158,6 @@ public class UpdateTask extends AppCompatActivity {
         if (time.length() == 2) time+=":00";
         if (time.length() == 4) time+="0";
 
-        task = new Task(task.getId(), name, desc, time, date);
 
         if (TextUtils.isEmpty(name)) nameText.setError(getString(R.string.edit_text_empty));
         if (TextUtils.isEmpty(desc)) descText.setError(getString(R.string.edit_text_empty));
@@ -175,6 +174,7 @@ public class UpdateTask extends AppCompatActivity {
                 && (date.length() == 10 || date.length() == 0))
         {
             if (time.isEmpty()) time = "23:59";
+            task = new Task(task.getId(), name, desc, time, date);
             database.child(task.getId()).setValue(task);
             Toast.makeText(this, getString(R.string.save_task_succ), Toast.LENGTH_SHORT).show();
             finish();

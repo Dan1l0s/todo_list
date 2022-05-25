@@ -1,5 +1,6 @@
 package ru.dan1l0s.project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -42,7 +43,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        buttonReg.setOnClickListener(view -> {createUser();});
+        buttonReg.setOnClickListener(v -> {createUser();});
 
         LoginMessage.setOnClickListener(v -> {finish();});
     }
@@ -85,7 +86,6 @@ public class SignUpActivity extends AppCompatActivity {
     private void sendEmailVer()
     {
         FirebaseUser user = mAuth.getCurrentUser();
-        assert user != null;
         user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

@@ -124,13 +124,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         });
     }
 
-    private boolean IntToBool(int a) { return a != 0; }
-
     public int getItemCount() { return list.size(); }
-
-    public void setList(List<Task> list) { this.list = list; }
-
-    public Context getContext() { return activity; }
 
     public interface OnTaskListener {
         void onTaskClick(int pos);
